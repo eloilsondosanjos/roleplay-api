@@ -2,6 +2,7 @@ import Logger from '@ioc:Adonis/Core/Logger'
 import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { Exception } from '@adonisjs/core/build/standalone'
+import { computed } from '@ioc:Adonis/Lucid/Orm'
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,12 @@ export default class ExceptionHandler extends HttpExceptionHandler {
         message: error.message,
         status: error.status,
         errors: error['messages']?.errors ? error['messages'].errors : '',
+      })
+    } else if (error.code === 'E_ROW_NOT_FOUND') {
+      return ctx.response.status(error.status).send({
+        code: 'BAD_REQUEST',
+        message: 'resource not found',
+        status: 404,
       })
     }
 
