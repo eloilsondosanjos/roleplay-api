@@ -134,7 +134,8 @@ test.group('User', (group) => {
     assert.equal(body.user.id, user.id)
 
     await user.refresh()
-    assert.isTrue(await Hash.verify(user.password, password))
+    const checkPassword = await Hash.verify(user.password, password)
+    assert.isTrue(checkPassword)
   })
 
   test('it should return 422 when required data is not provided', async (assert) => {
