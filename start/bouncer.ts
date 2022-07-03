@@ -1,4 +1,5 @@
-import { User } from 'App/Models/User'
+import GroupRequest from 'App/Models/GroupRequest'
+import User from 'App/Models/User'
 /**
  * Contract source: https://git.io/Jte3T
  *
@@ -33,6 +34,12 @@ import Bouncer from '@ioc:Adonis/Addons/Bouncer'
 export const { actions } = Bouncer.define('updateUser', (user: User, updatedUser: User) => {
   return user.id === updatedUser.id
 })
+  .define('acceptGroupRequest', (user: User, groupRequest: GroupRequest) => {
+    return user.id === groupRequest.group.master
+  })
+  .define('rejectGroupRequest', (user: User, groupRequest: GroupRequest) => {
+    return user.id === groupRequest.group.master
+  })
 
 /*
 |--------------------------------------------------------------------------
