@@ -77,6 +77,13 @@
     media-typer "^1.1.0"
     slash "^3.0.0"
 
+"@adonisjs/bouncer@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@adonisjs/bouncer/-/bouncer-2.3.0.tgz#202f0cfe9564dfee359ece6735d957ec6328a283"
+  integrity sha512-wJTIgIkDXtUyeCJGX/iV/EdrLQAuIU0YSwl8Lxn7hcYec9VbsMJ5aYIXeSNtOqECNqVm7KFdzyJiOEij9Luoqg==
+  dependencies:
+    "@poppinss/utils" "^4.0.4"
+
 "@adonisjs/config@^3.0.8":
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/@adonisjs/config/-/config-3.0.8.tgz#5716138b35c88a67a915c1717d31e84f0690c21c"
@@ -219,20 +226,20 @@
     slash "^3.0.0"
     tarn "^3.0.2"
 
-"@adonisjs/mail@7.2.2":
-  version "7.2.2"
-  resolved "https://registry.yarnpkg.com/@adonisjs/mail/-/mail-7.2.2.tgz#82f0f64ef6052c9affedb67b095bd8eb91b6c0d0"
-  integrity sha512-yTN8Nz4S4+brHZZSkRTelKz78m0PlXyq+2K27fOlvLuXzJfs6CZOvZ2SZsFwo0h/dA05xJMOIA9gttzR8rKKRw==
+"@adonisjs/mail@^7.2.2":
+  version "7.2.5"
+  resolved "https://registry.yarnpkg.com/@adonisjs/mail/-/mail-7.2.5.tgz#eb239259bbcb101fa6bd114edbe5663b6095f825"
+  integrity sha512-MT2zsd9HU+gtHi7uReErcMSZYDcxA9YzoIN7fzubiQDjlvxWcGjXn4Q79kPTKjSU6RPCAUThKhURwITJewU9jQ==
   dependencies:
-    "@poppinss/colors" "^2.1.4"
-    "@poppinss/manager" "^4.0.3"
-    "@poppinss/utils" "^3.1.3"
-    fastq "^1.11.0"
+    "@poppinss/colors" "^3.0.1"
+    "@poppinss/manager" "^5.0.1"
+    "@poppinss/utils" "^4.0.2"
+    fastq "^1.13.0"
     get-stream "^6.0.1"
     got "^11.8.2"
-    ical-generator "^2.2.0"
+    ical-generator "^3.2.1"
     multi-part "^3.0.0"
-    nodemailer "^6.6.2"
+    nodemailer "^6.7.2"
 
 "@adonisjs/profiler@^6.0.9":
   version "6.0.9"
@@ -455,15 +462,7 @@
     raw-body "^2.4.1"
     type-is "^1.6.18"
 
-"@poppinss/colors@^2.1.4":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@poppinss/colors/-/colors-2.1.5.tgz#3a8abb9c8e8828959ead55ee39b82a2c35e671ee"
-  integrity sha512-C6XChd0fssMe4aXqRrAAGrIKlOySEemKV422JYfBZaS7/qCfvQNIw67b0N03kbrgSrGvEgMUlaJVULlukuZM+g==
-  dependencies:
-    color-support "^1.1.3"
-    kleur "^4.1.4"
-
-"@poppinss/colors@^3.0.2":
+"@poppinss/colors@^3.0.1", "@poppinss/colors@^3.0.2":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/@poppinss/colors/-/colors-3.0.2.tgz#6c69933f43ddada81d1b614c47cac9881267b27c"
   integrity sha512-kgIiDPKUV0IaNtzLKricxd3mMWepqCbgh2Mb0M8C5zyS1bJ0K86s6dMu9xEKtF2XksqyE0qV4ANtMnTCMjQgvA==
@@ -488,12 +487,7 @@
   resolved "https://registry.yarnpkg.com/@poppinss/inspect/-/inspect-1.0.1.tgz#b03df9c1204ee72e3b9dbd5c34029c39475fb21d"
   integrity sha512-kLeEaBSGhlleyYvKc7c9s3uE6xv7cwyulE0EgHf4jU/CL96h0yC4mkdw1wvC1l1PYYQozCGy46FwMBAAMOobCA==
 
-"@poppinss/manager@^4.0.3":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@poppinss/manager/-/manager-4.0.4.tgz#7e71aedbc8e3a32cc5eb53adc78cf861240d0082"
-  integrity sha512-z9SFv+wKH+aZ5XLZXfkBsEk3h4scFf1imBtGFvlhBklzpplmvY70nSlHTPRC16h1VwjyuWaGuarN+vvQpQoFpA==
-
-"@poppinss/manager@^5.0.2":
+"@poppinss/manager@^5.0.1", "@poppinss/manager@^5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@poppinss/manager/-/manager-5.0.2.tgz#e35753391d7c7b58c112de09b027db173087b883"
   integrity sha512-c5F3EKztq/iw0J+BfNu5rSI5/ji+kjts4rJaC/VvIzpTWzbRorb7UR9J32T8cLtTwjNHbmxk3BAU402lvL2JFA==
@@ -727,6 +721,11 @@
   integrity sha512-X3HPWTwXRerBZS7Mo1k6vMVR1Z6zmJcDVn5O/31whe0tnjE4te6ZJSJGq1RiqHPjzPdMTfjCFogDJmwng9xHaQ==
   dependencies:
     "@types/superagent" "*"
+
+"@types/uuid@^8.3.4":
+  version "8.3.4"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.3.4.tgz#bd86a43617df0594787d38b735f55c805becf1bc"
+  integrity sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==
 
 "@types/validator@^13.7.2":
   version "13.7.3"
@@ -2252,7 +2251,7 @@ fast-safe-stringify@^2.0.8, fast-safe-stringify@^2.1.1:
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.1.1.tgz#c406a83b6e70d9e35ce3b30a81141df30aeba884"
   integrity sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==
 
-fastq@^1.11.0, fastq@^1.6.0:
+fastq@^1.13.0, fastq@^1.6.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/fastq/-/fastq-1.13.0.tgz#616760f88a7526bdfc596b7cab8c18938c36b98c"
   integrity sha512-YpkpUnK8od0o1hmeSc7UUs/eB/vIPWJYjKck2QKIzAf71Vm1AAQ3EbuZB3g2JIy+pg+ERD0vqI79KyZiB2e2Nw==
@@ -2826,10 +2825,10 @@ human-signals@^2.1.0:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
 
-ical-generator@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/ical-generator/-/ical-generator-2.2.0.tgz#5a1e00eb495f693fccd4724f5ca24ce1b8de8ec8"
-  integrity sha512-rn31KfGw1x5bQUasxmqT0s1qKoPYl0dq/EH5DGWrVFMpKrNtDO+VODUaiWvtgQb1JgmDkX5fBjKfB0+zHuaNjQ==
+ical-generator@^3.2.1:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/ical-generator/-/ical-generator-3.4.3.tgz#799edd40fe967eeb4b9de5a862efc97c648660da"
+  integrity sha512-9NkhRZ1cnfgIeXfv9iPPXIqBLYlKBUq8iteSDQxf1qEzhrmWgwb4jitTDGKOLvCoHB/pPmmtBTVHQw1WgCK3dg==
   dependencies:
     uuid-random "^1.3.2"
 
@@ -3793,7 +3792,7 @@ node-repl-await@^0.1.2:
     acorn-static-class-features "^1.0.0"
     acorn-walk "^8.0.2"
 
-nodemailer@^6.6.2:
+nodemailer@^6.7.2:
   version "6.7.6"
   resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.7.6.tgz#d3de8f644eaa0dad784d1be1375c596de492f3fc"
   integrity sha512-/6KF/umU7r7X21Y648/yiRLrgkfz0dmpyuo4BfgYWIpnT/jCbkPTvegMfxCsDAu+O810p2L1BGXieMTPp3nJVA==
