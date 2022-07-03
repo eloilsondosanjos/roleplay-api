@@ -1,4 +1,3 @@
-import { action } from '@ioc:Adonis/Addons/Bouncer'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import BadRequest from 'App/Exceptions/BadRequestException'
 import User from 'App/Models/User'
