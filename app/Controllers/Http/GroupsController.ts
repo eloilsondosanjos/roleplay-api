@@ -37,28 +37,22 @@ export default class GroupsController {
     return Group.query()
       .preload('players')
       .preload('masterUser')
-      .whereHas('players', (query) => {
-        query.where('id', userId)
-      })
+      .withScopes((scope) => scope.withPlayer(userId))
   }
 
   private filterByTerm(term: string) {
     return Group.query()
       .preload('players')
       .preload('masterUser')
-      .where('name', 'LIKE', `%${term}%`)
-      .orWhere('description', 'LIKE', `%${term}%`)
+      .withScopes((scope) => scope.withTerm(term))
   }
 
   private filterByUserAndTerm(userId: number, term: string) {
     return Group.query()
       .preload('players')
       .preload('masterUser')
-      .whereHas('players', (query) => {
-        query.where('id', userId)
-      })
-      .where('name', 'LIKE', `%${term}%`)
-      .orWhere('description', 'LIKE', `%${term}%`)
+      .withScopes((scope) => scope.withPlayer(userId))
+      .withScopes((scope) => scope.withTerm(term))
   }
 
   public async update({ request, response, bouncer }: HttpContextContract) {
