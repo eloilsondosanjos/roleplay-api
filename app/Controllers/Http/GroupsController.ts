@@ -4,6 +4,12 @@ import Group from 'App/Models/Group'
 import CreateGroup from 'App/Validators/CreateGroupValidator'
 
 export default class GroupsController {
+  public async index({ request, response }: HttpContextContract) {
+    const groups = await Group.query().preload('players').preload('masterUser')
+
+    return response.ok({ groups })
+  }
+
   public async store({ request, response }: HttpContextContract) {
     const groupPayload = await request.validate(CreateGroup)
     const group = await Group.create(groupPayload)

@@ -28,6 +28,7 @@ Route.post('/users', 'UsersController.store')
 Route.put('/users/:id', 'UsersController.update').middleware('auth')
 
 Route.post('/groups', 'GroupsController.store').middleware('auth')
+Route.get('/groups', 'GroupsController.index').middleware('auth')
 Route.patch('/groups/:id', 'GroupsController.update').middleware('auth')
 Route.delete('/groups/:id', 'GroupsController.destroy').middleware('auth')
 Route.delete('/groups/:groupId/players/:playerId', 'GroupsController.removePlayer').middleware(
