@@ -7,36 +7,7 @@ export default class GroupsController {
   public async index({ request, response }: HttpContextContract) {
     const { term, ['user']: userId } = request.qs()
 
-    let groups = [] as any
-    if (!userId) {
-      if (!term) {
-        groups = await Group.query().preload('players').preload('masterUser')
-      } else {
-        groups = await Group.query()
-          .preload('players')
-          .preload('masterUser')
-          .where('name', 'LIKE', `%${term}%`)
-          .orWhere('description', 'LIKE', `%${term}%`)
-      }
-    } else {
-      if (!term) {
-        groups = await Group.query()
-          .preload('players')
-          .preload('masterUser')
-          .whereHas('players', (query) => {
-            query.where('id', userId)
-          })
-      } else {
-        groups = await Group.query()
-          .preload('players')
-          .preload('masterUser')
-          .whereHas('players', (query) => {
-            query.where('id', userId)
-          })
-          .where('name', 'LIKE', `%${term}%`)
-          .orWhere('description', 'LIKE', `%${term}%`)
-      }
-    }
+    const groups = await this.filterByQueryString(userId, term)
 
     return response.ok({ groups })
   }
@@ -49,6 +20,45 @@ export default class GroupsController {
     await group.load('players')
 
     return response.created({ group })
+  }
+
+  private filterByQueryString(userId: number, term: string) {
+    if (userId && term) return this.filterByUserAndTerm(userId, term)
+    else if (userId) return this.filterByUser(userId)
+    else if (term) return this.filterByTerm(term)
+    else return this.all()
+  }
+
+  private all() {
+    return Group.query().preload('players').preload('masterUser')
+  }
+
+  private filterByUser(userId: number) {
+    return Group.query()
+      .preload('players')
+      .preload('masterUser')
+      .whereHas('players', (query) => {
+        query.where('id', userId)
+      })
+  }
+
+  private filterByTerm(term: string) {
+    return Group.query()
+      .preload('players')
+      .preload('masterUser')
+      .where('name', 'LIKE', `%${term}%`)
+      .orWhere('description', 'LIKE', `%${term}%`)
+  }
+
+  private filterByUserAndTerm(userId: number, term: string) {
+    return Group.query()
+      .preload('players')
+      .preload('masterUser')
+      .whereHas('players', (query) => {
+        query.where('id', userId)
+      })
+      .where('name', 'LIKE', `%${term}%`)
+      .orWhere('description', 'LIKE', `%${term}%`)
   }
 
   public async update({ request, response, bouncer }: HttpContextContract) {
