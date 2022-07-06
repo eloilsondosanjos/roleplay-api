@@ -5,18 +5,29 @@ import CreateGroup from 'App/Validators/CreateGroupValidator'
 
 export default class GroupsController {
   public async index({ request, response }: HttpContextContract) {
-    const { ['user']: userId } = request.qs()
+    const { term, ['user']: userId } = request.qs()
 
     let groups = [] as any
     if (!userId) {
       groups = await Group.query().preload('players').preload('masterUser')
     } else {
-      groups = await Group.query()
-        .preload('players')
-        .preload('masterUser')
-        .whereHas('players', (query) => {
-          query.where('id', userId)
-        })
+      if (!term) {
+        groups = await Group.query()
+          .preload('players')
+          .preload('masterUser')
+          .whereHas('players', (query) => {
+            query.where('id', userId)
+          })
+      } else {
+        groups = await Group.query()
+          .preload('players')
+          .preload('masterUser')
+          .whereHas('players', (query) => {
+            query.where('id', userId)
+          })
+          .where('name', 'LIKE', `%${term}%`)
+          .orWhere('description', 'LIKE', `%${term}%`)
+      }
     }
 
     return response.ok({ groups })
