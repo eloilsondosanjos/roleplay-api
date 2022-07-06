@@ -22,39 +22,6 @@ export default class GroupsController {
     return response.created({ group })
   }
 
-  private filterByQueryString(userId: number, term: string) {
-    if (userId && term) return this.filterByUserAndTerm(userId, term)
-    else if (userId) return this.filterByUser(userId)
-    else if (term) return this.filterByTerm(term)
-    else return this.all()
-  }
-
-  private all() {
-    return Group.query().preload('players').preload('masterUser')
-  }
-
-  private filterByUser(userId: number) {
-    return Group.query()
-      .preload('players')
-      .preload('masterUser')
-      .withScopes((scope) => scope.withPlayer(userId))
-  }
-
-  private filterByTerm(term: string) {
-    return Group.query()
-      .preload('players')
-      .preload('masterUser')
-      .withScopes((scope) => scope.withTerm(term))
-  }
-
-  private filterByUserAndTerm(userId: number, term: string) {
-    return Group.query()
-      .preload('players')
-      .preload('masterUser')
-      .withScopes((scope) => scope.withPlayer(userId))
-      .withScopes((scope) => scope.withTerm(term))
-  }
-
   public async update({ request, response, bouncer }: HttpContextContract) {
     const id = request.param('id')
     const payload = request.all()
@@ -93,5 +60,38 @@ export default class GroupsController {
     await group.related('players').detach()
 
     return response.ok({})
+  }
+
+  private filterByQueryString(userId: number, term: string) {
+    if (userId && term) return this.filterByUserAndTerm(userId, term)
+    else if (userId) return this.filterByUser(userId)
+    else if (term) return this.filterByTerm(term)
+    else return this.all()
+  }
+
+  private all() {
+    return Group.query().preload('players').preload('masterUser')
+  }
+
+  private filterByUser(userId: number) {
+    return Group.query()
+      .preload('players')
+      .preload('masterUser')
+      .withScopes((scope) => scope.withPlayer(userId))
+  }
+
+  private filterByTerm(term: string) {
+    return Group.query()
+      .preload('players')
+      .preload('masterUser')
+      .withScopes((scope) => scope.withTerm(term))
+  }
+
+  private filterByUserAndTerm(userId: number, term: string) {
+    return Group.query()
+      .preload('players')
+      .preload('masterUser')
+      .withScopes((scope) => scope.withPlayer(userId))
+      .withScopes((scope) => scope.withTerm(term))
   }
 }
