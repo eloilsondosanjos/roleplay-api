@@ -7,7 +7,11 @@ export default class GroupsController {
   public async index({ request, response }: HttpContextContract) {
     const { term, ['user']: userId } = request.qs()
 
-    const groups = await this.filterByQueryString(userId, term)
+    const page = request.input('page', 1)
+    const limit = request.input('limit', 10)
+
+    const groupsQuery = this.filterByQueryString(userId, term)
+    const groups = await groupsQuery.paginate(page, limit)
 
     return response.ok({ groups })
   }
