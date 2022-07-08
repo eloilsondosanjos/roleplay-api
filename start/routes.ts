@@ -20,8 +20,8 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/test', async () => {
-  return { message: 'server is running...' }
+Route.get('/', async () => {
+  return { hello: 'world' }
 })
 
 Route.post('/users', 'UsersController.store')
