@@ -1,6 +1,6 @@
-import { UserFactory } from 'Database/factories'
 import Database from '@ioc:Adonis/Lucid/Database'
 import { test } from '@japa/runner'
+import { UserFactory } from 'Database/factories'
 
 test.group('Session', (group) => {
   group.each.setup(async () => {
@@ -76,24 +76,23 @@ test.group('Session', (group) => {
     response.assertStatus(200)
   })
 
-  // test('it should revoke token when user signs out', async ({ client, assert }) => {
-  //   const unencryptedPassword = '12345678'
+  test('it should revoke token when user signs out', async ({ client, assert }) => {
+    const unencryptedPassword = '12345678'
 
-  //   const user = await UserFactory.merge({ password: unencryptedPassword }).create()
+    const user = await UserFactory.merge({ password: unencryptedPassword }).create()
 
-  //   await client
-  //     .post('/sessions')
-  //     .json({
-  //       email: user.email,
-  //       password: unencryptedPassword,
-  //     })
-  //     .loginAs(user)
+    await client
+      .post('/sessions')
+      .json({
+        email: user.email,
+        password: unencryptedPassword,
+      })
+      .loginAs(user)
 
-  //   await client.delete('/sessions').loginAs(user)
+    await client.delete('/sessions').loginAs(user)
 
-  //   const existsToken = await Database.query().select('*').from('api_tokens')
+    const existsToken = await Database.query().select('*').from('api_tokens')
 
-  //   //response.assertStatus(200)
-  //   assert.isEmpty(existsToken)
-  // })
+    assert.isEmpty(existsToken)
+  })
 })

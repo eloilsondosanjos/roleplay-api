@@ -1,8 +1,7 @@
-import Logger from '@ioc:Adonis/Core/Logger'
-import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
-import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { Exception } from '@adonisjs/core/build/standalone'
-import { computed } from '@ioc:Adonis/Lucid/Orm'
+import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
+import Logger from '@ioc:Adonis/Core/Logger'
 
 /*
 |--------------------------------------------------------------------------

@@ -1,10 +1,10 @@
-import User from 'App/Models/User'
 import Mail from '@ioc:Adonis/Addons/Mail'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { v4 as uuidv4 } from 'uuid'
+import TokenExpired from 'App/Exceptions/TokenExpiredException'
+import User from 'App/Models/User'
 import ForgotPassword from 'App/Validators/ForgotPasswordValidator'
 import ResetPassword from 'App/Validators/ResetPasswordValidator'
-import TokenExpired from 'App/Exceptions/TokenExpiredException'
+import { v4 as uuidv4 } from 'uuid'
 
 export default class PasswordsController {
   public async forgotPassword({ request, response }: HttpContextContract) {
