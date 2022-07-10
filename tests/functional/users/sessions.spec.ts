@@ -81,7 +81,7 @@ test.group('Session', (group) => {
 
     const user = await UserFactory.merge({ password: unencryptedPassword }).create()
 
-    await client
+    const response = await client
       .post('/sessions')
       .json({
         email: user.email,
@@ -89,7 +89,9 @@ test.group('Session', (group) => {
       })
       .loginAs(user)
 
-    await client.delete('/sessions').loginAs(user)
+    const { token } = response.body().token
+
+    await client.delete('/sessions').bearerToken(token)
 
     const existsToken = await Database.query().select('*').from('api_tokens')
 
